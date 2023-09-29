@@ -7,17 +7,18 @@ def ouvrir_le_csv(nom_du_fichier, f):
         dialect = csv.Sniffer().sniff(f.read(1024))
         f.seek(0)
         reader = csv.reader(f, dialect)
-        donnees = [row for row in reader]
+        donnees = list(reader)
         return donnees[1:]
 
 def commandes_bd(donnees_commandes):
-    print(donnees_commandes)
+    con =
     for L in donnees_commandes:
-       s=Template("""INSERT INTO commandes VALUES ($nom, $prenom, $adresse, $ville, $email, $motdepasse)""")
-       print(L)
-       #requete = s.substitute(nom=L[0],prenom=L[1],adresse = L[2], ville=L[3], email=L[4], motdepasse=L[5])
-       #print(requete)
-       #print(L)
+       s=Template("""INSERT INTO commandes VALUES ($idclient, $idmeuble, $quantite, $date)""")
+       print(len(L))
+       requete = s.substitute(idclient=L[0],idmeuble = L[1], quantite=L[2], date=L[3])
+       print(requete)
+
+
 
 if __name__ == "__main__":
     donnees_commandes = ouvrir_le_csv("commandes.csv", "commandes")
